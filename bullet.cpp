@@ -4,14 +4,15 @@
 #include <cmath>
 #include <list>
 
-bullet::bullet(std::string name)
+bullet::bullet(std::string name, float posx, float posy, float cur_x, float cur_y, float sizeFactor)
 {
-	posx = getX; // the bullet is created a little above the player
+
+	posx = getX(); // the bullet is created a little above the player
 							//if that makes sense
-	posy = getY + 1.0f;
+	posy = getY() + 1.0f;
 	pName = name;
 	//list that keeps active bullets
-	std::list<bullet> active_list;
+	static std::list<bullet*> active_list;
 	
 	
 }
@@ -58,7 +59,7 @@ void bullet::update(float dt)
 
 		for (bullet b : active_list)
 			active_list.pop_front(); //popping from the front to remove the oldest bullets first
-			~bullet(); //calling the destroyer method
+			bullet::~bullet(); //calling the destroyer method
 
 			
 
